@@ -1,5 +1,5 @@
-import { getHiroWalletAddress, getHiroPaymentAddress } from "./hiro.js";
-import { getUnisatWalletAddress } from "./unisat.js";
+import { getHiroWalletAddress, getHiroPaymentAddress, sendBitcoinFromHiro } from "./hiro.js";
+import { getUnisatWalletAddress, sendBitcoinFromUnisat } from "./unisat.js";
 import { getXVerseWalletAddress } from "./xverse.js";
 
 export const HIRO_WALLET = 'hiro';
@@ -34,9 +34,20 @@ export async function signPsbt(walletProvider, psbtHex) {
     case UNISAT_WALLET:
       return await window.unisat?.signPsbt(psbtHex);
     case XVERSE_WALLET:
-      // TODO: This IS NOT the same for ordinals and payment
-      return await getXVerseWalletAddress();
     default:
-      return '';
+      throw `PSBTs not supported for ${walletProvider}`;
+  }
+}
+
+export async function sendBtc(walletProvider, address, btcAmount) {
+  switch (walletProvider) {
+    case HIRO_WALLET:
+      return await sendBitcoinFromHiro(btcAmount, address);
+    case UNISAT_WALLET:
+      return await sendBitcoinFromUnisat(btcAmount, address);
+    case XVERSE_WALLET:
+      return await sendBitcoinFromXverse(btcAmount, address);
+    default:
+      throw `Sending BTC not supported for ${walletProvider}`;
   }
 }

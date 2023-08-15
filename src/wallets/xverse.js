@@ -4,12 +4,12 @@ export function defaultXVerseLogo() {
   return "https://assets.website-files.com/624b08d53d7ac60ccfc11d8d/64637a04ad4e523a3e07675c_32x32.png";
 }
 
-export async function getXVerseWalletAddress() {
+export async function getXVerseWalletAddress(walletType) {
   var addresses = undefined;
   const getAddressOptions = {
     payload: {
-      purposes: ['ordinals'],
-      message: 'Recursive Ordinals Builder will use this to receive your inscriptions',
+      purposes: [walletType],
+      message: 'The application will use this to receive your inscriptions and request payments',
       network: {
         type: 'Mainnet'
       },

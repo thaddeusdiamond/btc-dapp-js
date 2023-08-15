@@ -1,6 +1,6 @@
 import { getHiroWalletAddress, getHiroPaymentAddress, sendBitcoinFromHiro } from "./hiro.js";
 import { getUnisatWalletAddress, sendBitcoinFromUnisat } from "./unisat.js";
-import { getXVerseWalletAddress } from "./xverse.js";
+import { getXVerseWalletAddress, sendBitcoinFromXverse } from "./xverse.js";
 
 export const HIRO_WALLET = 'hiro';
 export const UNISAT_WALLET = 'unisat';
@@ -20,8 +20,7 @@ export async function getWalletAddress(walletProvider, walletType) {
     case UNISAT_WALLET:
       return await getUnisatWalletAddress();
     case XVERSE_WALLET:
-      // TODO: This IS NOT the same for ordinals and payment
-      return await getXVerseWalletAddress();
+      return await getXVerseWalletAddress(walletType);
     default:
       return '';
   }

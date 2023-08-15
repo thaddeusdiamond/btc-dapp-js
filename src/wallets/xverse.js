@@ -30,13 +30,20 @@ export async function getXVerseWalletAddress(walletType) {
   return addresses[0].address;
 }
 
-export async function sendBitcoinFromXverse(amount, address) {
+export async function sendBitcoinFromXverse(amount, address, originator) {
+  if (!originator) {
+    throw 'XVerse requires an origination (sender) address';
+  }
   var txHash = undefined;
   console.log(amount, address);
   const sendBtcOptions = {
     payload: {
       amountSats: amount.toString(),
-      recipientAddress: address,
+      senderAddress: originator,
+      recipients: [{
+        address: address,
+        amountSats: amount
+      }],
       network: {
         type: 'Mainnet'
       },

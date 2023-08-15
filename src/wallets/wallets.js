@@ -38,14 +38,14 @@ export async function signPsbt(walletProvider, psbtHex) {
   }
 }
 
-export async function sendBtc(walletProvider, address, btcAmount) {
+export async function sendBtc(walletProvider, address, btcAmount, originator) {
   switch (walletProvider) {
     case HIRO_WALLET:
       return await sendBitcoinFromHiro(btcAmount, address);
     case UNISAT_WALLET:
       return await sendBitcoinFromUnisat(btcAmount, address);
     case XVERSE_WALLET:
-      return await sendBitcoinFromXverse(btcAmount, address);
+      return await sendBitcoinFromXverse(btcAmount, address, originator);
     default:
       throw `Sending BTC not supported for ${walletProvider}`;
   }

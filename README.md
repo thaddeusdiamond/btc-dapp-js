@@ -41,7 +41,17 @@ A compiled version of this library is generated with each release using webpack.
 
 ### API Samples
 
-TBA
+From your React app or JavaScript client-side application, you can retrieve a user's Ordinals address with:
+```js
+const ordinalsAddr = await Wallets.getWalletAddress(walletProvider, Wallets.ORDINALS_TYPE);
+```
+
+Note that the `getWalletAddress` parameters are `walletProvider` and `addressType`.  See `wallets.js` in `src/wallets/` for the full list (e.g., hiro, unisat, xverse).
+
+Then, to initiate spending for the user, your JS app would call:
+```js
+const txid = await Wallets.sendBtc(walletProvider, destAddr, amountSats, fromAddr);
+```
 
 ## Testing
 

@@ -1,6 +1,6 @@
 import { getHiroWalletAddress, getHiroPaymentAddress, sendBitcoinFromHiro } from "./hiro.js";
 import { getUnisatWalletAddress, sendBitcoinFromUnisat } from "./unisat.js";
-import { getXVerseWalletAddress, sendBitcoinFromXverse } from "./xverse.js";
+import { getXVerseWalletAddress, sendBitcoinFromXverse, directInscribeForXVerse } from "./xverse.js";
 
 export const HIRO_WALLET = 'hiro';
 export const UNISAT_WALLET = 'unisat';
@@ -8,6 +8,11 @@ export const XVERSE_WALLET = 'xverse';
 
 export const PAYMENT_TYPE = 'payment';
 export const ORDINALS_TYPE = 'ordinals';
+
+export const PAYLOAD_TYPES = {
+  text: 'PLAIN_TEXT',
+  base64: 'BASE_64'
+}
 
 export async function getWalletAddress(walletProvider, walletType) {
   switch (walletProvider) {
@@ -48,5 +53,16 @@ export async function sendBtc(walletProvider, address, btcAmount, originator) {
       return await sendBitcoinFromXverse(btcAmount, address, originator);
     default:
       throw `Sending BTC not supported for ${walletProvider}`;
+  }
+}
+
+export async function directInscribe(walletProvider, contentType, payloadType, content, additionalFee, feeRate) {
+  switch (walletProvider) {
+    case XVERSE_WALLET:
+      return await directInscribeForXVerse(contentType, payloadType, content, additionalFee, feeRate);
+    case HIRO_WALLET:
+    case UNISAT_WALLET:
+    default:
+      throw `Direct inscriptions not supported for ${walletProvider}`;
   }
 }

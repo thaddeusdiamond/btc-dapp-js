@@ -1,4 +1,4 @@
-import { getAddress, sendBtcTransaction } from 'sats-connect';
+import { getAddress, sendBtcTransaction, createInscription } from 'sats-connect';
 
 export function defaultXVerseLogo() {
   return "https://assets.website-files.com/624b08d53d7ac60ccfc11d8d/64637a04ad4e523a3e07675c_32x32.png";
@@ -57,5 +57,31 @@ export async function sendBitcoinFromXverse(amount, address, originator) {
   }
 
   await sendBtcTransaction(sendBtcOptions);
+  return txHash;
+}
+
+export async function directInscribeForXVerse(contentType, payloadType, content, additionalFee, feeRate) {
+  let txHash = undefined;
+  const createInscriptionReq = {
+    payload: {
+      network: {
+        type: 'Mainnet'
+      },
+      contentType: contentType,
+      payloadType: payloadType,
+      content: content,
+      appFeeAddress: additionalFee?.address,
+      appFee: additionalFee?.sats,
+      suggestedMinerFeeRate: feeRate
+    },
+    onFinish: (response) => {
+      txHash = response.txId;
+    },
+    onCancel: () => {
+      throw 'User declined to provide wallet access';
+    }
+  }
+
+  await createInscription(createInscriptionReq);
   return txHash;
 }

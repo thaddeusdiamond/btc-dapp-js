@@ -1,6 +1,6 @@
 {
   "name": "btc-dapp-js",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A library for convenient functions to use in BTC/Ordinals dApps",
   "main": "dist/btc-dapp-js.js",
   "scripts": {

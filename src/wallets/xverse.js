@@ -1,9 +1,5 @@
 import { getAddress, sendBtcTransaction, createInscription } from 'sats-connect';
 
-export function defaultXVerseLogo() {
-  return "https://assets.website-files.com/624b08d53d7ac60ccfc11d8d/64637a04ad4e523a3e07675c_32x32.png";
-}
-
 export async function getXVerseWalletAddress(walletType) {
   var addresses = undefined;
   const getAddressOptions = {

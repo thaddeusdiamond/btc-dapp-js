@@ -14,6 +14,19 @@ export const PAYLOAD_TYPES = {
   base64: 'BASE_64'
 }
 
+export function defaultLogo(walletProvider) {
+  switch (walletProvider) {
+    case HIRO_WALLET:
+      return "https://assets.website-files.com/62cd53cfaed4257f165f6576/632b19335916e41bfcd20268_favicon-32x32.png";
+    case UNISAT_WALLET:
+      return "https://unisat.io/img/favicon.ico";
+    case XVERSE_WALLET:
+      return "https://assets.website-files.com/624b08d53d7ac60ccfc11d8d/64637a04ad4e523a3e07675c_32x32.png";
+    default:
+      return undefined;
+  }
+}
+
 export async function getWalletAddress(walletProvider, walletType) {
   switch (walletProvider) {
     case HIRO_WALLET:

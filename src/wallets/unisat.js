@@ -1,7 +1,3 @@
-export function defaultUnisatLogo() {
-  return "https://unisat.io/img/favicon.ico";
-}
-
 export async function getUnisatWalletAddress() {
   if (typeof window.unisat === 'undefined') {
     throw 'UniSat Wallet is not installed';

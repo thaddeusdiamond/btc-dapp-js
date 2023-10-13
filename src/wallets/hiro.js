@@ -2,10 +2,6 @@ const BTC_CURRENCY = 'BTC';
 const TAPROOT_STANDARD = 'p2tr';
 const SEGWIT_STANDARD = 'p2wpkh';
 
-export function defaultHiroLogo() {
-  return "https://assets.website-files.com/62cd53cfaed4257f165f6576/632b19335916e41bfcd20268_favicon-32x32.png";
-}
-
 export async function getHiroWalletAddress() {
   return await getHiroAddress(BTC_CURRENCY, TAPROOT_STANDARD);
 }

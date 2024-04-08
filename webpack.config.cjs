@@ -10,12 +10,14 @@ module.exports = {
   experiments: {
     asyncWebAssembly: true,
     topLevelAwait: true,
+    outputModule: true,
     layers: true // optional, with some bundlers/frameworks it doesn't work without
   },
 
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'btc-dapp-js.js',
-    library: 'BtcDAppJs'
+    libraryTarget: 'module'
   },
 
   plugins: [

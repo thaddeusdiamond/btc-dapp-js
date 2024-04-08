@@ -1,8 +1,8 @@
 {
   "name": "btc-dapp-js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A library for convenient functions to use in BTC/Ordinals dApps",
-  "main": "src/index.js",
+  "main": "dist/btc-dapp-js.js",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Warning: no test specified\" && exit 0"

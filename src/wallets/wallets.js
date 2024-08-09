@@ -63,7 +63,7 @@ export async function signPsbt(walletProvider, psbtHex) {
     case OKX_WALLET:
       return await window.okxwallet?.bitcoin.signPsbt(psbtHex);
     case PHANTOM_WALLET:
-      return await window?.phantom?.bitcoin.signPSBT(psbtHex);
+      return await window.phantom?.bitcoin.signPSBT(psbtHex);
     case UNISAT_WALLET:
       return await window.unisat?.signPsbt(psbtHex);
     case XVERSE_WALLET:
